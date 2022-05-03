@@ -83,7 +83,7 @@ const getPoolToken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "da95aabd7e0de0dd93a1ccb34a5cdaee1650975798136005951" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -108,7 +108,7 @@ const getPoolPairTOken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "da95aabd7e0de0dd93a1ccb34a5cdaee1650975798136005951" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -126,66 +126,6 @@ const getPoolPairTOken = async (req, res) => {
   } catch (err) {
     console.log('Opps! some thing went wrong. ' + err);
   }
-  // try {
-  //   console.log('i am here');
-  //   const query = `
-  //   {
-  //       ethereum(network: bsc) {
-  //         dexTrades(
-  //           baseCurrency: {is: "0x449aeD32C1685dbeca28D1aE45462b6156A6096D"}
-  //           options: {desc: "trades"}
-  //         ) {
-  //           poolToken: smartContract {
-  //             address {
-  //               address
-  //             }
-  //           }
-  //           exchange {
-  //             fullName
-  //           }
-  //           pair: quoteCurrency {
-  //             symbol
-  //           }
-  //           buyAmountInUsd: buyAmount(in: USD)
-  //           sellAmountInUsd: sellAmount(in: USD)
-  //           volume: tradeAmount(calculate: sum , in: USD)
-  //           quoteAmount(calculate: sum, in: USD)
-  //           median: quotePrice (calculate: median)
-  //           high: quotePrice(calculate: maximum)
-  //           low: quotePrice(calculate: minimum)
-  //           open: minimum(of: block, get: quote_price)
-  //           close: maximum(of: block, get: quote_price)
-  //           trades: count
-  //         }
-  //       }  
-  //   }
-  //   `;
-  //   const url = "https://graphql.bitquery.io/";
-  //   const opts = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
-  //     },
-  //     body: JSON.stringify({
-  //       query
-  //     })
-  //   };
-  //   var getData = await fetch(url, opts)
-  //     .then(response =>
-  //       response.json()
-  //     )
-  //     .then(result => { return result; })
-  //     .catch(console.error);
-
-  //     console.log('i am here==========================');  
-  //    let data=getData.data.ethereum.dexTrades;
-
-  //   return res.status(200).json(data);
-
-  // } catch (err) {
-  //   return res.status(400).json(err);
-  // }
 }
 
 module.exports = { bitQuery, getPoolToken, getPoolPairTOken };

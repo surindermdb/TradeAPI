@@ -68,49 +68,7 @@ const isSmartToken= async (req,res)=>{
     let data=await commonFunction.checkIsSmartToken(req.query.address);
     console.log(data);
     return res.status(200).json(data);
-    try {
-
-        // console.log(req.query.address);
-        let query=`{
-            ethereum(network: bsc) {
-              address(address: {is: "`+req.query.address+`"}) {
-                smartContract {
-                currency {
-                    symbol
-                    name
-                    decimals
-                    tokenType
-                  }
-                }
-              }
-            }
-          }`;
-
-        const url = "https://graphql.bitquery.io/";
-        const opts = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
-            },
-            body: JSON.stringify({
-                query
-            })
-        };
-
-        var getData = await fetch(url, opts)
-            .then(response =>
-                response.json()
-            )
-            .then(result => {return result;})
-            .catch(console.error);
-
-        console.log(getData);   
-        return res.status(200).json(getData); 
-
-    } catch (err) {
-        console.error(err)
-    }
+    
 }
 
 module.exports = {tokenHolder,tokenSupply,isSmartToken};

@@ -175,7 +175,7 @@ const getNewToken = async (req,res) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "da95aabd7e0de0dd93a1ccb34a5cdaee1650975798136005951" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })
@@ -189,62 +189,6 @@ const getNewToken = async (req,res) => {
     } catch (err) {
         console.log('Opps! some thing went wrong. ' + err);
     }
-    // try {
-    //     const query = `
-    //     {
-    //         ethereum(network: bsc) {
-    //           smartContractCalls(
-    //             options: {desc: "block.height", limit: 50}
-    //             smartContractMethod: {is: "Contract Creation"}
-    //             smartContractType: {is: Token}
-    //           ) {
-    //             block {
-    //               height
-    //               timestamp {
-    //                 time
-    //               }
-    //             }
-    //             smartContract {
-    //               contractType
-    //               address {
-    //                 address
-    //                 annotation
-    //               }
-    //               currency {
-    //                 name
-    //                 symbol
-    //                 decimals
-    //                 tokenType
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-
-    //         `;
-    //     const url = "https://graphql.bitquery.io/";
-    //     const opts = {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
-    //         },
-    //         body: JSON.stringify({
-    //             query
-    //         })
-    //     };
-    //     var getData = await fetch(url, opts)
-    //         .then(response =>
-    //             response.json()
-    //         )
-    //         .then(result => {return result;})
-    //         .catch(console.error);
-        
-    //     return res.status(200).json(getData);
-    // }
-    // catch(err){
-    //     console.log('Opps! some thing went wrong. ' + err);
-    // }
 }
 
 
@@ -257,7 +201,7 @@ const getTokenCheckDetail = async (req,res) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "da95aabd7e0de0dd93a1ccb34a5cdaee1650975798136005951" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })
