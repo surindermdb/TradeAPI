@@ -1,56 +1,123 @@
 var express = require('express');
-var router = express.Router();
 var bodyParser = require('body-parser');
-
+const fetch = require('node-fetch');
+var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-var User = require('./User');
 
-// CREATES A NEW USER
-router.post('/', function (req, res) {
-    User.create({
-            name : req.body.name,
-            email : req.body.email,
-            password : req.body.password
-        }, 
-        function (err, user) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
-            res.status(200).send(user);
-        });
-});
+
 
 // RETURNS ALL THE USERS IN THE DATABASE
-router.get('/', function (req, res) {
-    User.find({}, function (err, users) {
-        if (err) return res.status(500).send("There was a problem finding the users.");
-        res.status(200).send(users);
-    });
-});
+router.post('/', async function (req, res) {
 
-// GETS A SINGLE USER FROM THE DATABASE
-router.get('/:id', function (req, res) {
-    User.findById(req.params.id, function (err, user) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
-        res.status(200).send(user);
-    });
-});
+    let searchTxt = req.baseUrl.split('=')[1].toString();
 
-// DELETES A USER FROM THE DATABASE
-router.delete('/:id', function (req, res) {
-    User.findByIdAndRemove(req.params.id, function (err, user) {
-        if (err) return res.status(500).send("There was a problem deleting the user.");
-        res.status(200).send("User: "+ user.name +" was deleted.");
-    });
-});
+    try {
+        // `+searchTxt.toUpperCase()+`
+        const query = `
+            {
+                search(string: "`+searchTxt.toUpperCase()+`",network: bsc){
+                    network{
+                        network
+                    }
+                    subject{
+                        __typename
+                        ... on Address {
+                            address
+                            annotation
+                        }
+                        ... on Currency {
+                            symbol
+                            name
+                            address
+                            tokenId
+                            tokenType
+                            
+                        }
+                        ... on SmartContract {
+                            address
+                            annotation
+                            contractType
+                            protocol
+                        }
+                        ... on TransactionHash {
+                            hash
+                        }
+                        }
+                }
+            }
 
-// UPDATES A SINGLE USER IN THE DATABASE
-router.put('/:id', function (req, res) {
-    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
-        if (err) return res.status(500).send("There was a problem updating the user.");
-        res.status(200).send(user);
-    });
-});
+            `;
+        const url = "https://graphql.bitquery.io/";
+        const opts = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
+            },
+            body: JSON.stringify({
+                query
+            })
+        };
+        var getData = await fetch(url, opts)
+            .then(response =>
+                response.json()
+            )
+            .then(result => {return result;})
+            .catch(console.error);
+        
+        return res.status(200).json(getData);
 
+        // var requestOptions = {
+        //     method: 'GET',
+        //     headers: { Cookie: 'ASP.NET_SessionId=c2yjkk14nqrwslquium1hy12; __cflb=02DiuFnsSsHWYH8WqVXbZzkeTrZ6gtmGUD495Bvs4BfeC' },
+        //     redirect: 'follow'
+        // };
+
+        // var getData = await fetch("https://etherscan.io/searchHandler?term=" + encodeURIComponent(searchTxt) + "&filterby=0", requestOptions)
+        //     .then(response =>
+        //         response.json()
+        //     )
+        //     .then(result => {
+
+
+
+        //         return result;
+        //     })
+        //     .catch(error => console.log('error', error));
+
+        // var finalOutput = getData
+        //     .map((item) => {
+        //         item = item.split("\t");
+        //         let data = item[2].split("~");
+
+        //         return {
+        //             name: item[0],
+        //             address: item[1],
+        //             icon: item[5],
+        //             contractAddres: data[0],
+        //             url: data[1],
+        //             price: data[3],
+        //             validate: item[4] != "0"
+        //         };
+        //     });
+
+
+        // var finalData = [];
+        // for (let info of finalOutput) {
+        //     var data = {};
+        //     if (info.contractAddres == '') {
+        //         continue;
+        //     }
+        //     finalData.push(info);
+        // }
+        // return res.status(200).json(finalData);
+
+    } catch (err) {
+
+        //throw error in json response with status 500. 
+        return res.status(400).json(err);
+    }
+});
 
 module.exports = router;
