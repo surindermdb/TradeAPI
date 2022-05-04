@@ -120,12 +120,36 @@ const getPoolPairTOken = async (req, res) => {
       data = JSON.parse(data.data.data);
       return res.status(200).json(data);
     }
-
-
-
   } catch (err) {
     console.log('Opps! some thing went wrong. ' + err);
   }
 }
 
-module.exports = { bitQuery, getPoolToken, getPoolPairTOken };
+const getPoolPairklive = async (req, res) => {
+  try {
+    let address = req.query.address;
+    const url = 'https://api.opencc.xyz/v1api/v2/pairs/'+address+'-bsc/kline?interval=1440&category=u&count=800';
+    let data = await axios({
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+      },
+      url: url
+    })
+
+    if (data.data.status == 0) {
+      return res.status(200).json({ fail: true, msg: 'Contract check failed! Please try again later.' });
+    }
+    else {
+      data = JSON.parse(data.data.data);
+      return res.status(200).json(data);
+    }
+  } catch (err) {
+    console.log('Opps! some thing went wrong. ' + err);
+  }
+}
+
+
+
+module.exports = { bitQuery, getPoolToken, getPoolPairTOken,getPoolPairklive };

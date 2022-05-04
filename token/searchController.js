@@ -21,7 +21,6 @@ const searchByName=async(req,res)=>{
     // }
 
     let response = await axios.get('https://bscscan.com/searchHandler?term=' + encodeURIComponent(searchTxt) + '&filterby=0').catch((err)=>{
-      console.log('i am here get Error===============after getting data')
       if (err.response) {
           console.log(err.response.data);
           console.log(err.response.status);

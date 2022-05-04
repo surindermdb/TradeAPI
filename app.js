@@ -24,6 +24,7 @@ app.use('/api/recent',hotGainerController.getNewToken); // Get request
 app.use('/api/pool',poolController.bitQuery); // Get request
 app.use('/api/pooltoken',poolController.getPoolToken); // Get request
 app.use('/api/poolpair',poolController.getPoolPairTOken); // Get request
+app.use('/api/kline',poolController.getPoolPairklive);
 app.use('/api/trade/:address',tradeController); // Post request
 // app.use('/api/holder/:address',supplyController.tokenHolder);
 // app.use('/api/check',hotGainerController.getTokenCheckDetail); // Get request

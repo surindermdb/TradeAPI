@@ -8,8 +8,6 @@ router.use(bodyParser.json());
 
 const tokenHolder= async(req,res)=>{
     let address=req.baseUrl.split('=')[1].toString();
-    console.log('i am here ');
-    console.log(address);
     try {
         var requestOptions = {
             method: 'GET',

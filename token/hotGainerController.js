@@ -7,14 +7,12 @@ const res = require('express/lib/response');
 
 const getHotToken = async (req,res) => {
 
-    console.log('i am here get hot token====================')
     try {
         const url = 'https://bscscan.com/tokens?ps=100&p=1';
         const { data } = await axios({
             method: "GET",
             url: url,
         }).catch((err)=>{
-            console.log('i am here get Error===============after getting data')
             if (err.response) {
                 console.log(err.response.data);
                 console.log(err.response.status);
@@ -22,9 +20,6 @@ const getHotToken = async (req,res) => {
               }
             // console.log(err);
         })
-        // console.log(data);
-
-        console.log('i am here get hot token===============after getting data')
         const $ = cheerio.load(data)
 
         const elemSelector = 'table#tblResult tbody > tr';
