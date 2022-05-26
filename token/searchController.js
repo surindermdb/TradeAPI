@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-const fetch = require('node-fetch');
 const axios = require('axios');
 const { response } = require('../app');
 var commonFunction = require('./common');
@@ -72,7 +71,7 @@ const serachByToken = async (req,res) => {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
-              "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+              "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
           },
           url: url
       })
@@ -94,7 +93,7 @@ const tokenExtraDetail=async(req,res)=>{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })

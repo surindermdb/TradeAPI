@@ -170,7 +170,7 @@ const getNewToken = async (req,res) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })
@@ -190,22 +190,28 @@ const getNewToken = async (req,res) => {
 const getTokenCheckDetail = async (req,res) => {
     try {
         let address=req.query.address;
-        
-        const url = 'https://api.opencc.xyz/v1api/v2/tokens/contract?token_id='+address+'-bsc';
+        let network=req.query.network;
+
+        let url = 'https://api.opencc.xyz/v1api/v2/tokens/contract?token_id='+address+'-'+network;
         let data = await axios({
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })
+        // 
 
         if(data.data.status == 0){
             return res.status(200).json({fail:true, msg:'Contract check failed! Please try again later.'});
         }
         else{
             data=JSON.parse(data.data.data);
+            // console.log(data);
+            // let tokensummary= await tokenSummary(address);
+            // console.log(tokensummary);
+            // data.summery = tokensummary;
             return res.status(200).json(data);
         }
 
@@ -213,6 +219,46 @@ const getTokenCheckDetail = async (req,res) => {
 
     } catch (err) {
         console.log('Opps! some thing went wrong. ' + err);
+    }
+}
+
+const tokenSummary=async(token)=>{
+    try {
+        const url = 'https://api.top100token.com/offer/single/swap/'+token;
+        let data = await axios({
+            method: "GET",
+            url: url
+        })
+
+        console.log('first request',data)
+        let networkName='binance';
+        let basicInfo=data!=undefined? data.data._data:undefined;
+        if(data!=undefined){
+            if(basicInfo.network=='ethereum' || basicInfo.network=='fantom'){
+                networkName=basicInfo.network;
+            }
+        }
+
+        const url3 = 'https://api.top100token.com/offer/scamCheck?contract='+token+'&network='+networkName;
+        let data3 = await axios({
+            method: "GET",
+            url: url3
+        })
+
+        let summary={
+            name: basicInfo!=undefined?basicInfo.name:'', 
+            network:basicInfo!=undefined?basicInfo.network:'',
+            description:basicInfo!=undefined?basicInfo.description:'',
+            isVerified:basicInfo!=undefined?basicInfo.isVerified:'',
+            totalSupply:basicInfo!=undefined?basicInfo.totalSupply:'',
+            isDisableScam:data3!=undefined?data3.data._data.isDisableScam:0,
+            isBlacklistScam:data3!=undefined?data3.data._data.isBlacklistScam:0,
+            isMintScam:data3!=undefined?data3.data._data.isMintScam:0,
+            isFeeScam:data3!=undefined?data3.data._data.isFeeScam:0
+        }
+        return summary;
+    } catch (err) {
+      console.log('Opps! some thing went wrong. ' + err);
     }
 }
 

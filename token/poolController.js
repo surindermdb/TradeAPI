@@ -52,7 +52,7 @@ const bitQuery = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
+        "X-API-KEY": "BQYGpJmxZAYOBXNDBbCiHRdlQ2pWhhD0"
       },
       body: JSON.stringify({
         query
@@ -83,7 +83,7 @@ const getPoolToken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -108,7 +108,7 @@ const getPoolPairTOken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -133,7 +133,7 @@ const getPoolPairklive = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "e53691236cdf57cf7c71bb1d06920f671651581878353067080" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })

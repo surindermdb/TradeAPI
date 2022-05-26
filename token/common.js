@@ -24,7 +24,7 @@ const checkIsSmartToken = async (address)=>{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
+                "X-API-KEY": "BQYGpJmxZAYOBXNDBbCiHRdlQ2pWhhD0"
             },
             body: JSON.stringify({
                 query

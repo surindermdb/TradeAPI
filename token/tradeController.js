@@ -8,6 +8,7 @@ router.use(bodyParser.json());
 
 router.post('/', async function (req, res) {
 
+  console.log('trade here');
   let address = req.baseUrl.split('=')[1].toString();
   try {
     let query = `{
@@ -69,7 +70,7 @@ router.post('/', async function (req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-API-KEY": "BQYXVgFy33rjBJCXSjVN6yeVcrfd5dS8"
+        "X-API-KEY": "BQYGpJmxZAYOBXNDBbCiHRdlQ2pWhhD0"
       },
       body: JSON.stringify({
         query: query,
@@ -82,6 +83,8 @@ router.post('/', async function (req, res) {
       )
       .then(result => { return result; })
       .catch(console.error);
+
+    console.log(getData);  
 
     return res.status(200).json(getData.data.ethereum.dexTrades);
 

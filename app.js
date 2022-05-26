@@ -27,6 +27,7 @@ app.use('/api/poolpair',poolController.getPoolPairTOken); // Get request
 app.use('/api/kline',poolController.getPoolPairklive);
 app.use('/api/trade/:address',tradeController); // Post request
 // app.use('/api/holder/:address',supplyController.tokenHolder);
-// app.use('/api/check',hotGainerController.getTokenCheckDetail); // Get request
+app.use('/api/check',hotGainerController.getTokenCheckDetail); // Get request
+// app.use('/api/summary',searchController.tokenSummary); 
 
 module.exports = app;
