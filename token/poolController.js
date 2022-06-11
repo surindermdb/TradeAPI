@@ -83,7 +83,7 @@ const getPoolToken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -108,7 +108,7 @@ const getPoolPairTOken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -133,7 +133,7 @@ const getPoolPairklive = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })

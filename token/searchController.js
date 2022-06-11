@@ -11,14 +11,6 @@ router.use(bodyParser.json());
 const searchByName=async(req,res)=>{
   let searchTxt = req.baseUrl.split('=')[1].toString();
 
-    // if(searchTxt.includes('0x')==true){
-    //   let data= await commonFunction.checkIsSmartToken(searchTxt);
-    //   if(data.data.ethereum.address[0].smartContract === null){
-    //     console.log('null');
-    //     return res.status(200).json({data:'record not found'});
-    //   }
-    // }
-
     let response = await axios.get('https://bscscan.com/searchHandler?term=' + encodeURIComponent(searchTxt) + '&filterby=0').catch((err)=>{
       if (err.response) {
           console.log(err.response.data);
@@ -71,7 +63,7 @@ const serachByToken = async (req,res) => {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
-              "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+              "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
           },
           url: url
       })
@@ -93,7 +85,7 @@ const tokenExtraDetail=async(req,res)=>{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "58f6887c2453d4a607db4e4ebc4fdeda1653543599260736285" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
