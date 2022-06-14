@@ -128,7 +128,9 @@ const getPoolPairTOken = async (req, res) => {
 const getPoolPairklive = async (req, res) => {
   try {
     let address = req.query.address;
-    const url = 'https://api.opencc.xyz/v1api/v2/pairs/'+address+'-bsc/kline?interval=1440&category=u&count=800';
+    let resolution= req.query.resolution;
+    const url = 'https://api.opencc.xyz/v1api/v2/pairs/'+address+'-bsc/kline?interval='+resolution+'&category=u&count=800';
+    console.log('===========kline URl',url)
     let data = await axios({
       method: "GET",
       headers: {
