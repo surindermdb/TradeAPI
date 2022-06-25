@@ -14,11 +14,7 @@ const getHotToken = async (req,res) => {
             url: url,
         }).catch((err)=>{
             if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
               }
-            // console.log(err);
         })
         const $ = cheerio.load(data)
 
@@ -77,7 +73,6 @@ const getHotToken = async (req,res) => {
                 })
 
             }
-            // console.log(coinObj);
             array.push(coinObj);
         })
 
@@ -170,7 +165,7 @@ const getNewToken = async (req,res) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })
@@ -192,12 +187,12 @@ const getTokenCheckDetail = async (req,res) => {
         let address=req.query.address;
         let network=req.query.network;
 
-        let url = 'https://api.opencc.xyz/v1api/v2/tokens/contract?token_id='+address+'-'+network;
+        let url = 'https://api.opencc.xyz/v1api/v2/tokens/newcontract?token_id='+address+'-'+network;
         let data = await axios({
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+                "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
             },
             url: url
         })

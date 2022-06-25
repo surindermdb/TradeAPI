@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 router.post('/', async function (req, res) {
 
-  console.log('trade here');
+  // console.log('trade here');
   let address = req.baseUrl.split('=')[1].toString();
   try {
     let query = `{

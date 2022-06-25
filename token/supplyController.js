@@ -22,7 +22,7 @@ const tokenHolder= async(req,res)=>{
             .then(result => {
                 return result;
             })
-            .catch(error => console.log('error', error));
+            .catch(error =>   console.log('error', error));
     
         return res.status(200).json(getData);
 
@@ -49,7 +49,7 @@ const tokenSupply=async(req,res)=>{
             .then(result => {
                 return result;
             })
-            .catch(error => console.log('error', error));
+            .catch(error =>  console.log('error', error));
     
         return res.status(200).json(getData);
 

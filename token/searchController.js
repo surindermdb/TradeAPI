@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 // RETURNS ALL THE USERS IN THE DATABASE
 const searchByName=async(req,res)=>{
   let searchTxt = req.baseUrl.split('=')[1].toString();
-
+  console.log('search address====',searchTxt);
     let response = await axios.get('https://bscscan.com/searchHandler?term=' + encodeURIComponent(searchTxt) + '&filterby=0').catch((err)=>{
       if (err.response) {
           console.log(err.response.data);
@@ -58,12 +58,14 @@ const serachByToken = async (req,res) => {
         console.log('null');
         return res.status(200).json({data:'record not found'});
       }
+      console.log('search address====');
       const url = 'https://api.opencc.xyz/v1api/v2/tokens?keyword='+address;
+      console.log('search address====',url);
       let data = await axios({
           method: "GET",
           headers: {
               "Content-Type": "application/json",
-              "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+              "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
           },
           url: url
       })
@@ -85,7 +87,7 @@ const tokenExtraDetail=async(req,res)=>{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })

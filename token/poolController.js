@@ -78,12 +78,12 @@ const bitQuery = async (req, res) => {
 const getPoolToken = async (req, res) => {
   try {
     let address = req.query.address;
-    const url = 'https://api.opencc.xyz/v1api/v2/pairs?pageNO=1&pageSize=20&sort=created_at&direction=desc&chain=&minPoolSize=250000';
+    const url = 'https://api.opencc.xyz/v1api/v2/pairs?pageNO=1&pageSize=20&sort=created_at&direction=desc&chain=&minPoolSize=500&amm=';
     let data = await axios({
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -108,7 +108,7 @@ const getPoolPairTOken = async (req, res) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -130,12 +130,12 @@ const getPoolPairklive = async (req, res) => {
     let address = req.query.address;
     let resolution= req.query.resolution;
     const url = 'https://api.opencc.xyz/v1api/v2/pairs/'+address+'-bsc/kline?interval='+resolution+'&category=u&count=800';
-    console.log('===========kline URl',url)
+    // console.log('===========kline URl',url)
     let data = await axios({
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-auth": "415dd8526e410297cc36d0208775bae41654779977113866833" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
       },
       url: url
     })
@@ -152,6 +152,31 @@ const getPoolPairklive = async (req, res) => {
   }
 }
 
+const poolTokenInfo=async (req,res)=>{
+  try {
+    let address=req.query.address;
+    
+    console.log('pool address====',address);
+    const url = 'https://api.opencc.xyz/v1api/v2/tokens?keyword='+address;
+    console.log('pool url====',url);
+    let data = await axios({
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-auth": "a7944968c50c2e842efb2f11faddc85e1656069312246479209" //"bd3240c9205c5f6b89445ece19c50af21650443369115839048"
+        },
+        url: url
+    })
+
+    data=JSON.parse(data.data.data);
+    data=data[0];
+    return res.status(200).json(data);
+
+  } catch (err) {
+      console.log('Opps! some thing went wrong. ' + err);
+  }
+}
 
 
-module.exports = { bitQuery, getPoolToken, getPoolPairTOken,getPoolPairklive };
+
+module.exports = { bitQuery, getPoolToken, getPoolPairTOken,getPoolPairklive,poolTokenInfo };
